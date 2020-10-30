@@ -10,6 +10,7 @@ import java.util.stream.Stream;
 import javax.annotation.PostConstruct;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.vaadin.tutorials.backend.entity.Company;
 import com.vaadin.tutorials.backend.entity.Contact;

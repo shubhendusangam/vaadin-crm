@@ -9,6 +9,7 @@ import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.router.Route;
 import com.vaadin.tutorials.backend.entity.Company;
 import com.vaadin.tutorials.backend.entity.Contact;
+import com.vaadin.tutorials.backend.services.CompanyService;
 import com.vaadin.tutorials.backend.services.ContactService;
 
 @Route("")
@@ -21,14 +22,14 @@ public class MainView extends VerticalLayout {
     private TextField filterText = new TextField();
     private ContactForm contactForm;
 
-    public MainView(ContactService contactService) {
+    public MainView(ContactService contactService, CompanyService companyService) {
         this.contactService = contactService;
         addClassName("list-view");
         setSizeFull();
         configureGrid();
         configureFilter();
 
-        contactForm = new ContactForm();
+        contactForm = new ContactForm(companyService.findAll());
         Div content = new Div(contactGrid, contactForm);
         content.addClassName("content");
         content.setSizeFull();
