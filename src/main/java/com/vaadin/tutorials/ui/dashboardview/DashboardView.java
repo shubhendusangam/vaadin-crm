@@ -1,6 +1,5 @@
 package com.vaadin.tutorials.ui.dashboardview;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import com.vaadin.flow.component.Component;
@@ -32,8 +31,7 @@ public class DashboardView extends VerticalLayout {
    }
 
    private Component getContactStats() {
-      Span stats = new Span(contactService.count() + " contacts");
-      return stats;
+      return new Span(contactService.count() + " contacts");
    }
 
    private Chart getCompanyChart() {
