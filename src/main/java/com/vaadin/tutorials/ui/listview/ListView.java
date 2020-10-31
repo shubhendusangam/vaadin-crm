@@ -1,5 +1,8 @@
 package com.vaadin.tutorials.ui.listview;
 
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.grid.Grid;
@@ -16,16 +19,18 @@ import com.vaadin.tutorials.backend.services.CompanyService;
 import com.vaadin.tutorials.backend.services.ContactService;
 import com.vaadin.tutorials.ui.MainLayout;
 
+@Component
+@Scope("prototype")
 @Route(value="", layout = MainLayout.class)
 @PageTitle("Contacts | Vaadin CRM")
 @CssImport("./shared-style.css")
 public class ListView extends VerticalLayout {
 
-    private ContactService contactService;
+    ContactService contactService;
 
-    private Grid<Contact> contactGrid = new Grid<>(Contact.class);
-    private TextField filterText = new TextField();
-    private ContactForm contactForm;
+    Grid<Contact> contactGrid = new Grid<>(Contact.class);
+    TextField filterText = new TextField();
+    ContactForm contactForm;
 
     public ListView(ContactService contactService, CompanyService companyService) {
         this.contactService = contactService;
@@ -75,16 +80,16 @@ public class ListView extends VerticalLayout {
         return toolBar;
     }
 
-    private void updateList() {
+    public void updateList() {
         contactGrid.setItems(contactService.findAll(filterText.getValue()));
     }
 
-    private void addContact() {
+    public void addContact() {
         contactGrid.asSingleSelect().clear();
         editContact(new Contact());
     }
 
-    private void editContact(Contact contact) {
+    public void editContact(Contact contact) {
         if (contact == null){
             closeEditors();
         } else {
@@ -94,13 +99,13 @@ public class ListView extends VerticalLayout {
         }
     }
 
-    private void deleteContact(ContactForm.DeleteEvent deleteEvent) {
+    public void deleteContact(ContactForm.DeleteEvent deleteEvent) {
         contactService.delete(deleteEvent.getContact());
         updateList();
         closeEditors();
     }
 
-    private void saveContact(ContactForm.SaveEvent saveEvent) {
+    public void saveContact(ContactForm.SaveEvent saveEvent) {
         contactService.save(saveEvent.getContact());
         updateList();
         closeEditors();

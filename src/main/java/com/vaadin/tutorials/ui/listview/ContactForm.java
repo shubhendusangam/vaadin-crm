@@ -33,7 +33,7 @@ public class ContactForm extends FormLayout {
    Button close = new Button("Cancel");
 
    Binder<Contact> binder = new Binder<>(Contact.class);
-   private Contact contact;
+   Contact contact;
 
    public ContactForm() {}
 
@@ -47,7 +47,7 @@ public class ContactForm extends FormLayout {
       add(firstName, lastName, email, status, company, createButtonLayout());
    }
 
-   private Component createButtonLayout() {
+   public Component createButtonLayout() {
       save.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
       delete.addThemeVariants(ButtonVariant.LUMO_ERROR);
       close.addThemeVariants(ButtonVariant.LUMO_TERTIARY);
@@ -105,7 +105,7 @@ public class ContactForm extends FormLayout {
       return getEventBus().addListener(eventType, listener);
    }
 
-   private void validateAndSave() {
+   public void validateAndSave() {
       try {
          binder.writeBean(contact);
       } catch (ValidationException e) {
