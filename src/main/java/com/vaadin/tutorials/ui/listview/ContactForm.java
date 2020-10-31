@@ -1,4 +1,4 @@
-package com.vaadin.tutorials.ui;
+package com.vaadin.tutorials.ui.listview;
 
 
 import com.vaadin.flow.component.Component;

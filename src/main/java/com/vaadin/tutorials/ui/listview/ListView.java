@@ -1,4 +1,4 @@
-package com.vaadin.tutorials.ui;
+package com.vaadin.tutorials.ui.listview;
 
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dependency.CssImport;
@@ -8,15 +8,18 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.value.ValueChangeMode;
+import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.tutorials.backend.entity.Company;
 import com.vaadin.tutorials.backend.entity.Contact;
 import com.vaadin.tutorials.backend.services.CompanyService;
 import com.vaadin.tutorials.backend.services.ContactService;
+import com.vaadin.tutorials.ui.MainLayout;
 
-@Route("")
+@Route(value="", layout = MainLayout.class)
+@PageTitle("Contacts | Vaadin CRM")
 @CssImport("./shared-style.css")
-public class MainView extends VerticalLayout {
+public class ListView extends VerticalLayout {
 
     private ContactService contactService;
 
@@ -24,7 +27,7 @@ public class MainView extends VerticalLayout {
     private TextField filterText = new TextField();
     private ContactForm contactForm;
 
-    public MainView(ContactService contactService, CompanyService companyService) {
+    public ListView(ContactService contactService, CompanyService companyService) {
         this.contactService = contactService;
         addClassName("list-view");
         setSizeFull();
